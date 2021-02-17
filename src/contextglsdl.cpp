@@ -33,6 +33,13 @@ bool ContextGLSDL::initGLSDL()
         return false;
     }
 
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 8);
+    SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 5);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+
     m_mainWindow = SDL_CreateWindow(m_mixin->m_kV["application"]["name"].c_str(), 
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         std::stoi(m_mixin->m_kV["window"]["width"]),
@@ -45,20 +52,18 @@ bool ContextGLSDL::initGLSDL()
         return false;
     }
 
-    m_mainSurface = SDL_GetWindowSurface(m_mainWindow);
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
-    if (m_mainSurface == nullptr)
-    {
-        std::cout << SDL_GetError() << std::endl;
-        return false;
-    }
+    //m_mainSurface = SDL_GetWindowSurface(m_mainWindow);
+
+    //if (m_mainSurface == nullptr)
+    //{
+    //    std::cout << SDL_GetError() << std::endl;
+    //    return false;
+    //}
 
     m_glContext = SDL_GL_CreateContext(m_mainWindow);
-
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 5);
-    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
     // Initialize OpenGL API
     GLenum glew = glewInit();
@@ -69,11 +74,12 @@ bool ContextGLSDL::initGLSDL()
     }
 
     glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
+    //glDepthFunc(GL_LESS);
+    glEnable(GL_MULTISAMPLE);
 
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     //glPointSize(4.);
-    //glLineWidth(2.);
+    glLineWidth(2.);
 
     return true;
 }
