@@ -107,7 +107,7 @@ void ContextGLSDL::resizeGL(int w, int h)
 void ContextGLSDL::run(float fps)
 {
     // TODO remove
-    MeshGL mesh("./models/cube.obj");
+    MeshGL mesh("./models/twofaces.obj");
     m_meshes.push_back(mesh);
 
     bool isRunning = true;
