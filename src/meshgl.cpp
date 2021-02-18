@@ -58,14 +58,14 @@ bool MeshGL::init(const std::string& objFile)
 
     glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
     glBufferData(GL_ARRAY_BUFFER,
-        sizeof(float) * m_obj->m_vertices.size() * 3,
+        sizeof(float) * m_obj->m_vertices.size(),
         m_obj->m_vertices.data(),
         GL_STATIC_DRAW);
     
     glBindBuffer(GL_ARRAY_BUFFER, m_vno);
     glBufferData(GL_ARRAY_BUFFER,
-        sizeof(float) * m_obj->m_normals.size() * 3,
-        m_obj->m_normals.data(),
+        sizeof(float) * m_obj->m_sortedNormals.size(),
+        m_obj->m_sortedNormals.data(),
         GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);

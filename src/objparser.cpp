@@ -26,7 +26,7 @@ ObjParser::~ObjParser()
 bool ObjParser::parseFile()
 {
     std::string current;
-    static u_int8_t counter = 0;
+    static u_int8_t mainCounter = 0;
 
     while (std::getline(m_objFile, current))
     {
@@ -36,17 +36,12 @@ bool ObjParser::parseFile()
             // Vertex coord
             std::istringstream ss(current);
             std::string tmp;
-            vec3 vertex(0, 0, 0);
 
             while (ss >> tmp)
             {
-                if (counter == 1) vertex.m_x = std::stof(tmp);
-                if (counter == 2) vertex.m_y = std::stof(tmp);
-                if (counter == 3) vertex.m_x = std::stof(tmp);
-                counter++;
+                if (mainCounter > 0) m_vertices.push_back(std::stof(tmp));
+                mainCounter++;
             }
-
-            m_vertices.push_back(vertex);
             
         }
         // TEXTURE COORD
@@ -60,60 +55,59 @@ bool ObjParser::parseFile()
             // Normal coord
             std::istringstream ss(current);
             std::string tmp;
-            vec3 normal(0, 0, 0);
 
             while (ss >> tmp)
             {
-                if (counter == 1) normal.m_x = std::stof(tmp);
-                if (counter == 2) normal.m_y = std::stof(tmp);
-                if (counter == 3) normal.m_z = std::stof(tmp);
-                counter++;
+                if (mainCounter > 0)
+                {
+                    m_normals.push_back(std::stof(tmp));
+                }
+
+                mainCounter++;
             }
 
-            m_normals.push_back(normal);
-
-            //std::cout << normal.m_x << ":" << normal.m_y << ":" << normal.m_z << std::endl;
         }
         // FACES
         else if (current.at(0) == 'f' && current.at(1) == ' ')
         {
-            std::istringstream ss(current);
+            std::istringstream ss(current.substr(1, current.size()));
             std::string tmp;
 
             while (ss >> tmp)
             {
 
-                if (counter >= 1) {
-                    // Split first face information
-                    std::replace(tmp.begin(), tmp.end(), '/', ' ');
-                    std::istringstream first_ss(tmp);
-                    std::string first_tmp;
-                    static unsigned short face_counter = 0;
+                int posFirstForwardSlash = tmp.find_first_of('/');
+                int posLastForwardSlash = tmp.find_last_of('/');
 
-                    while (first_ss >> first_tmp) 
-                    {
-                        if (face_counter == 0) 
-                        {
-                            m_faces.push_back(std::stoi(first_tmp) - 1);
-                        }
+                // All the indices values are minused by 1 to match the OpenGL array indexing
+                std::string indexString = tmp.substr(0, posFirstForwardSlash);
+                if (!indexString.empty()) m_faces.push_back(std::stoi(indexString) - 1);
 
-                        face_counter++;
-                    }
+                std::string textureString = tmp.substr(posFirstForwardSlash + 1, posFirstForwardSlash);
+                if (!textureString.empty()) m_textures.push_back(std::stof(textureString) - 1);
 
-                    face_counter = 0;
-                }
-                counter++;
+                std::string normalString = tmp.substr(posLastForwardSlash + 1, tmp.size());
+                if (!normalString.empty()) m_normalIndices.push_back(std::stoi(normalString) - 1);
+
             }
 
         }
         // reset stringstream counter (duh)
-        counter = 0;
+        mainCounter = 0;
 
     }
 
+    // Now that we have the normals and the indices, let's sort it out
+    for (int i = 0; i < m_normalIndices.size(); i++)
+    {
+        m_sortedNormals.push_back(m_normals.at(m_normalIndices.at(i)));
+        m_sortedNormals.push_back(m_normals.at(m_normalIndices.at(i)+1));
+        m_sortedNormals.push_back(m_normals.at(m_normalIndices.at(i)+2));
+    }
+
     // TODO remove
-    std::cout << "Model loaded with " << m_vertices.size() << " vertices." << std::endl;
-    std::cout << "Normal size: " << m_normals.size() << std::endl;
+    std::cout << "Model loaded with " << m_vertices.size() / 3 << " vertices." << std::endl;
+    std::cout << "Normal size: " << m_normals.size() / 3 << std::endl;
 
     return true;
 }

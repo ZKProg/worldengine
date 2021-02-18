@@ -77,9 +77,9 @@ bool ContextGLSDL::initGLSDL()
     //glDepthFunc(GL_LESS);
     glEnable(GL_MULTISAMPLE);
 
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     //glPointSize(4.);
-    glLineWidth(2.);
+    //glLineWidth(2.);
 
     return true;
 }
