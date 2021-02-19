@@ -3,7 +3,7 @@
 #include "contextglsdl.hpp"
 #include "settingsmixin.hpp"
 
-#define RUN_TESTS
+// #define RUN_TESTS
 
 #ifdef RUN_TESTS
     #include "objparser_tests.hpp"
