@@ -86,7 +86,7 @@ bool ContextGLSDL::initGLSDL()
 
 void ContextGLSDL::paintGL()
 {
-    glClearColor(0.5, 0.7, 0.5, 1);
+    glClearColor(0.1, 0.1, 0.1, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Render assets
@@ -107,8 +107,15 @@ void ContextGLSDL::resizeGL(int w, int h)
 void ContextGLSDL::run(float fps)
 {
     // TODO remove
-    MeshGL mesh("./models/multifaces.obj");
-    m_meshes.push_back(mesh);
+    // MeshGL mesh("./models/suzanne.obj");
+    // m_meshes.push_back(mesh);
+
+    for (int i = 0; i < m_mixin->m_kV["models"].size(); i++)
+      {
+	std::string modelFile = "./models/" + m_mixin->m_kV["models"]["name"] + ".obj";
+	MeshGL mesh(modelFile);
+	m_meshes.push_back(mesh);
+      }
 
     bool isRunning = true;
     while(isRunning)

@@ -7,15 +7,15 @@ out vec3 color;
 
 void main (void)
 {
-    vec3 sunlight = vec3(-1, 1, 0);
+    vec3 sunlight = vec3(1, 1, 0);
 
-    vec3 suncolor = vec3(1, 1, 0);
-    vec3 ambient = vec3(1, 0, 0);
+    vec3 suncolor = vec3(0.2, 0.2, 1);
+    vec3 ambient = vec3(0.3, 0.3, 0.3);
 
     vec3 n_sun = normalize(sunlight);
     vec3 n_norm = normalize(normal_vertex);
 
-    vec3 diff = max(dot(n_norm, n_sun), 0.0) * vec3(1, 0, 0);
+    vec3 diff = max(dot(n_norm, n_sun), 0.0) * vec3(1, 1, 1);
 
     color = .5 * (ambient + diff);
 }

@@ -7,7 +7,7 @@
 class ContextGLSDL
 {
 public:
-    ContextGLSDL(std::unique_ptr<SettingsMixin> mixin);
+    explicit ContextGLSDL(std::unique_ptr<SettingsMixin> mixin);
     ~ContextGLSDL();
 
     bool initGLSDL();
