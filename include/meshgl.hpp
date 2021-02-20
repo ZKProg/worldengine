@@ -7,23 +7,23 @@
 class MeshGL
 {
 public:
-    MeshGL(const std::string& objFile,
-        const std::string& vertex = "shaders/vertex.glsl",
-        const std::string& fragment = "shaders/fragment.glsl");
-    //MeshGL(MeshGL&& mesh);
-    ~MeshGL();
+  MeshGL(const std::string& objFile,
+	 const std::string& vertex = "shaders/vertex.glsl",
+	 const std::string& fragment = "shaders/fragment.glsl");
+  MeshGL(MeshGL&& mesh);
+  ~MeshGL();
 
-    bool init(const std::string& objFile);
-    void render() const;
+  bool init(const std::string& objFile);
+  void render() const;
 
 protected:
 
-    GLuint m_vao, m_vbo, m_vno, m_vto, m_ebo;
-    Shader *m_shaderProgram;
-    ObjParser *m_obj;
+  GLuint m_vao, m_vbo, m_vno, m_vto, m_ebo;
+  Shader *m_shaderProgram;
+  std::unique_ptr<ObjParser> m_obj;
 
-    // Debug
-    GLfloat *g_vertex_buffer_data;
-    GLuint *elements;
+  // Debug
+  GLfloat *g_vertex_buffer_data;
+  GLuint *elements;
 
 };

@@ -114,7 +114,7 @@ void ContextGLSDL::run(float fps)
       {
 	std::string modelFile = "./models/" + m_mixin->m_kV["models"]["name"] + ".obj";
 	MeshGL mesh(modelFile);
-	m_meshes.push_back(mesh);
+	m_meshes.push_back(std::move(mesh));
       }
 
     bool isRunning = true;
