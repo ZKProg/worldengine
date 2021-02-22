@@ -3,10 +3,12 @@
 #include "contextglsdl.hpp"
 #include "settingsmixin.hpp"
 
-// #define RUN_TESTS
+#ifdef UNIX
+    #define RUN_TESTS
+#endif
 
 #ifdef RUN_TESTS
-#include "objparser_tests.hpp"
+    #include "objparser_tests.hpp"
 #endif
 
 int main (int argc, char **argv)

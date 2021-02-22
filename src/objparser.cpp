@@ -29,7 +29,7 @@ bool ObjParser::parseFile()
   auto startParsing = std::chrono::system_clock::now();
 
   std::string current;
-  static u_int8_t mainCounter = 0;
+  static int mainCounter = 0;
 
   while (std::getline(m_objFile, current))
     {

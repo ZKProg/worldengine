@@ -38,3 +38,6 @@ cmake_install.cmake
 build/
 Makefile
 worldengine
+ALL_*
+worldengine.sln
+*.vcx*

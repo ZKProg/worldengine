@@ -19,10 +19,17 @@
 #include <GL/glew.h>
 #include <GL/gl.h>
 
-#include <gtest/gtest.h>
-#include <gmock/gmock.h>
+//#ifdef UNIX
+	#include <gtest/gtest.h>
+	#include <gmock/gmock.h>
+//#endif // UNIX
 
-#include <boost/asio.hpp>
+#ifdef WIN32
+	#include "stdafx.h"
+#endif
+
+
+//#include <boost/asio.hpp>
 #include <boost/range/adaptor/indexed.hpp>
 
 
