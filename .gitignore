@@ -38,3 +38,5 @@ worldengine
 ALL_*
 worldengine.sln
 *.vcx*
+CMakeSettings.json
+out/

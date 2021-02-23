@@ -4,7 +4,7 @@ cmake_policy(SET CMP0048 NEW)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS "-Wall -fopenmp")
 
-ADD_DEFINITIONS("-DBOOST_ALL_NO_LIB")
+add_definitions("-DBOOST_ALL_NO_LIB")
 
 project(worldengine VERSION 0.1)
 
@@ -34,7 +34,13 @@ endif()
 
 # WIN32 ////////////////////////////////////////////////////////////////////
 if (WIN32)
-    set(build_dir ${CMAKE_SOURCE_DIR}/build/win_x64)
+
+    if (CMAKE_BUILD_TYPE MATCHES Debug)
+        set(build_dir ${CMAKE_SOURCE_DIR}/build/win_x64/Debug/)
+    else()
+        set(build_dir ${CMAKE_SOURCE_DIR}/build/win_x64/Release/)
+    endif()
+
     set(Boost_INCLUDE_DIR "C:/local/boost_1_75_0/")
 
     find_package(Boost 1.75 REQUIRED)
@@ -99,13 +105,30 @@ target_precompile_headers(
 
 # LIBARIES LINKING ///////////////////////////////////////////////////////////
 if (WIN32)
+    set(CMAKE_FIND_LIBRARY_SUFFIXES ".lib")
+    target_compile_options(worldengine PUBLIC /MT)
+    target_link_options(worldengine PUBLIC /INCREMENTAL:NO /NODEFAULTLIB:MSVCRT)
+
     target_link_directories(
         worldengine
         PUBLIC
-        ${CMAKE_SOURCE_DIR}/lib/x64
+        ${CMAKE_SOURCE_DIR}/lib/Release
     )
 
-    target_link_libraries(
+    if (CMAKE_BUILD_TYPE MATCHES Debug)
+        target_link_libraries(
+        worldengine
+        SDL2.lib
+        SDL2main.lib
+        SDL2_image.lib
+        SDL2_ttf.lib
+        SDL2test.lib
+        opengl32.lib 
+        glew32d.lib
+        ${wxWidgets_LIBRARIES}
+    )
+    else()
+        target_link_libraries(
         worldengine
         SDL2.lib
         SDL2main.lib
@@ -116,9 +139,15 @@ if (WIN32)
         glew32.lib
         ${wxWidgets_LIBRARIES}
     )
+    endif()
 endif()
 
 if (UNIX)
+    # Build static
+    #set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+    #set(BUILD_SHARED_LIBS OFF)
+    #set(CMAKE_EXE_LINKER_FLAGS "-static")
+    
     target_link_libraries(
         worldengine
         SDL2
