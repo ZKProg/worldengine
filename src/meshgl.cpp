@@ -3,21 +3,10 @@
 MeshGL::MeshGL(const std::string& objFile,
     const std::string& vertex,
     const std::string& fragment) :
-    m_shaderProgram(nullptr),
-    g_vertex_buffer_data(nullptr),
-    elements(nullptr)
+    m_shaderProgram(nullptr)
 {
     m_shaderProgram = new Shader(vertex.c_str(), fragment.c_str());
     m_obj = std::unique_ptr<ObjParser>(new ObjParser(objFile));
-
-    g_vertex_buffer_data = new GLfloat[9];
-    elements = new GLuint[3];
-
-    g_vertex_buffer_data[0] = -0.5f; g_vertex_buffer_data[1] = -0.5f; g_vertex_buffer_data[2] = 0.0f;
-    g_vertex_buffer_data[3] =  0.5f; g_vertex_buffer_data[4] = -0.5f; g_vertex_buffer_data[5] = 0.0f;
-    g_vertex_buffer_data[6] =  0.0f; g_vertex_buffer_data[7] =  0.5f; g_vertex_buffer_data[8] = 0.0f;
-
-    elements[0] = 0; elements[1] = 1; elements[2] = 2;
 
     if (!this->init(objFile))
     {
@@ -33,9 +22,7 @@ MeshGL::MeshGL(MeshGL&& mesh) :
     m_vto(mesh.m_vto),
     m_ebo(mesh.m_ebo),
     m_shaderProgram(mesh.m_shaderProgram),
-    m_obj(std::move(mesh.m_obj)),
-    g_vertex_buffer_data(mesh.g_vertex_buffer_data),
-    elements(mesh.elements)
+    m_obj(std::move(mesh.m_obj))
 {
     // Move cstr
     std::cout << "Move constructor called." << std::endl;

@@ -2,7 +2,6 @@
 
 ContextGLSDL::ContextGLSDL(std::unique_ptr<SettingsMixin> mixin) :
     m_mainWindow(nullptr),
-    m_mainSurface(nullptr),
     m_mixin(std::move(mixin))
 {
     mixin.reset();
@@ -55,14 +54,6 @@ bool ContextGLSDL::initGLSDL()
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
-    //m_mainSurface = SDL_GetWindowSurface(m_mainWindow);
-
-    //if (m_mainSurface == nullptr)
-    //{
-    //    std::cout << SDL_GetError() << std::endl;
-    //    return false;
-    //}
-
     m_glContext = SDL_GL_CreateContext(m_mainWindow);
 
     // Initialize OpenGL API
@@ -106,9 +97,6 @@ void ContextGLSDL::resizeGL(int w, int h)
 
 void ContextGLSDL::run(float fps)
 {
-    // TODO remove
-    // MeshGL mesh("./models/suzanne.obj");
-    // m_meshes.push_back(mesh);
 
     for (int i = 0; i < m_mixin->m_kV["models"].size(); i++)
     {

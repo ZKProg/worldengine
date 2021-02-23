@@ -22,8 +22,4 @@ protected:
   Shader *m_shaderProgram;
   std::unique_ptr<ObjParser> m_obj;
 
-  // Debug
-  GLfloat *g_vertex_buffer_data;
-  GLuint *elements;
-
 };

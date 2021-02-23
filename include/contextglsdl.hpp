@@ -20,7 +20,6 @@ public:
 protected:
 
     SDL_Window *m_mainWindow;
-    SDL_Surface *m_mainSurface;
     SDL_GLContext m_glContext;
     SDL_Event m_event;
     std::unique_ptr<SettingsMixin> m_mixin;
