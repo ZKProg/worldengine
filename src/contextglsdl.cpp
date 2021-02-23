@@ -2,7 +2,6 @@
 
 ContextGLSDL::ContextGLSDL(std::unique_ptr<SettingsMixin> mixin) :
     m_mainWindow(nullptr),
-    m_mainSurface(nullptr),
     m_mixin(std::move(mixin))
 {
     mixin.reset();
@@ -55,14 +54,6 @@ bool ContextGLSDL::initGLSDL()
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
-    //m_mainSurface = SDL_GetWindowSurface(m_mainWindow);
-
-    //if (m_mainSurface == nullptr)
-    //{
-    //    std::cout << SDL_GetError() << std::endl;
-    //    return false;
-    //}
-
     m_glContext = SDL_GL_CreateContext(m_mainWindow);
 
     // Initialize OpenGL API
@@ -86,7 +77,7 @@ bool ContextGLSDL::initGLSDL()
 
 void ContextGLSDL::paintGL()
 {
-    glClearColor(0.1, 0.1, 0.1, 1);
+    glClearColor(1.0, 0.4, 0.4, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Render assets
@@ -106,16 +97,15 @@ void ContextGLSDL::resizeGL(int w, int h)
 
 void ContextGLSDL::run(float fps)
 {
-    // TODO remove
-    // MeshGL mesh("./models/suzanne.obj");
-    // m_meshes.push_back(mesh);
 
     for (int i = 0; i < m_mixin->m_kV["models"].size(); i++)
-      {
-	std::string modelFile = "./models/" + m_mixin->m_kV["models"]["name"] + ".obj";
-	MeshGL mesh(modelFile);
-	m_meshes.push_back(mesh);
-      }
+    {
+	    std::string modelFile = "./models/" + m_mixin->m_kV["models"]["name"] + ".obj";
+	    MeshGL mesh(modelFile);
+	    m_meshes.push_back(std::move(mesh));
+    }
+
+    bool wireframe = false;
 
     bool isRunning = true;
     while(isRunning)
@@ -134,8 +124,12 @@ void ContextGLSDL::run(float fps)
                 switch(k)
                 {
                     case SDLK_ESCAPE:
-                    isRunning = false;
-                    break;
+                        isRunning = false;
+                        break;
+                    case SDLK_SPACE:
+                        wireframe?glPolygonMode(GL_FRONT_AND_BACK, GL_LINE):glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+                        wireframe = !wireframe;
+                        break;
                 }
             }
         }
