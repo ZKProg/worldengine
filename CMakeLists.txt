@@ -8,10 +8,14 @@ add_definitions("-DBOOST_ALL_NO_LIB")
 
 project(worldengine VERSION 0.1)
 
-# UNIX ///////////////////////////////////////////////////////////////////
+# UNIX ///////////////////////////////////////////////////////////////////////
 if(UNIX)
     # boost ------------------------------------------------------------------
-    set(build_dir ${CMAKE_SOURCE_DIR}/build/linux_64)
+    if (CMAKE_BUILD_TYPE MATCHES Debug)
+        set(build_dir ${CMAKE_SOURCE_DIR}/build/linux_x64/Debug/)
+    else()
+        set(build_dir ${CMAKE_SOURCE_DIR}/build/linux_x64/Release/)
+    endif()
 
     set(Boost_USE_STATIC_LIBS OFF)
     set(Boost_USE_MULTITHREADED ON)

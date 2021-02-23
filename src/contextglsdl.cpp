@@ -1,25 +1,21 @@
 #include "contextglsdl.hpp"
 
-ContextGLSDL::ContextGLSDL(std::unique_ptr<SettingsMixin> mixin) :
-    m_mainWindow(nullptr),
-    m_mixin(std::move(mixin))
+ContextGLSDL::ContextGLSDL(std::unique_ptr<SettingsMixin> mixin) : m_mainWindow(nullptr),
+                                                                   m_mixin(std::move(mixin))
 {
     mixin.reset();
 
     if (this->initGLSDL())
     {
-
     }
     else
     {
         // Something went wrong
     }
-    
 }
 
-ContextGLSDL::~ContextGLSDL() 
+ContextGLSDL::~ContextGLSDL()
 {
-    
 }
 
 bool ContextGLSDL::initGLSDL()
@@ -39,11 +35,11 @@ bool ContextGLSDL::initGLSDL()
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 5);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-    m_mainWindow = SDL_CreateWindow(m_mixin->m_kV["application"]["name"].c_str(), 
-        SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-        std::stoi(m_mixin->m_kV["window"]["width"]),
-        std::stoi(m_mixin->m_kV["window"]["height"]), 
-        SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+    m_mainWindow = SDL_CreateWindow(m_mixin->m_kV["application"]["name"].c_str(),
+                                    SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+                                    std::stoi(m_mixin->m_kV["window"]["width"]),
+                                    std::stoi(m_mixin->m_kV["window"]["height"]),
+                                    SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
 
     if (m_mainWindow == nullptr)
     {
@@ -81,14 +77,13 @@ void ContextGLSDL::paintGL()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Render assets
-    for (const auto& mesh: m_meshes)
+    for (const auto &mesh : m_meshes)
     {
         mesh.render();
     }
 
     SDL_GL_SwapWindow(m_mainWindow);
 }
-
 
 void ContextGLSDL::resizeGL(int w, int h)
 {
@@ -100,15 +95,15 @@ void ContextGLSDL::run(float fps)
 
     for (int i = 0; i < m_mixin->m_kV["models"].size(); i++)
     {
-	    std::string modelFile = "./models/" + m_mixin->m_kV["models"]["name"] + ".obj";
-	    MeshGL mesh(modelFile);
-	    m_meshes.push_back(std::move(mesh));
+        std::string modelFile = "./models/" + m_mixin->m_kV["models"]["name"] + ".obj";
+        MeshGL mesh(modelFile);
+        m_meshes.push_back(std::move(mesh));
     }
 
     bool wireframe = false;
 
     bool isRunning = true;
-    while(isRunning)
+    while (isRunning)
     {
         while (SDL_PollEvent(&m_event) > 0)
         {
@@ -121,15 +116,15 @@ void ContextGLSDL::run(float fps)
             {
                 int k = m_event.key.keysym.sym;
 
-                switch(k)
+                switch (k)
                 {
-                    case SDLK_ESCAPE:
-                        isRunning = false;
-                        break;
-                    case SDLK_SPACE:
-                        wireframe?glPolygonMode(GL_FRONT_AND_BACK, GL_LINE):glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-                        wireframe = !wireframe;
-                        break;
+                case SDLK_ESCAPE:
+                    isRunning = false;
+                    break;
+                case SDLK_SPACE:
+                    wireframe ? glPolygonMode(GL_FRONT_AND_BACK, GL_LINE) : glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+                    wireframe = !wireframe;
+                    break;
                 }
             }
         }
@@ -140,7 +135,6 @@ void ContextGLSDL::run(float fps)
 
     // The engine is about to exit.
     this->exitSDL();
-
 }
 
 void ContextGLSDL::exitSDL()
@@ -149,6 +143,6 @@ void ContextGLSDL::exitSDL()
 
     SDL_GL_DeleteContext(m_glContext);
     SDL_DestroyWindow(m_mainWindow);
-    
+
     SDL_Quit();
 }

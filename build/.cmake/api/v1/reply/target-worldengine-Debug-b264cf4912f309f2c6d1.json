@@ -1,0 +1,431 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "linux_x64/Debug/worldengine"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"add_definitions",
+			"set_property",
+			"include",
+			"include_directories",
+			"target_precompile_headers"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt",
+			"/usr/share/cmake-3.19/Modules/UsewxWidgets.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 99,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 155,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 7,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 35,
+				"parent" : 0
+			},
+			{
+				"file" : 1,
+				"parent" : 4
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 69,
+				"parent" : 5
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 81,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 58,
+				"parent" : 5
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 104,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-Wall -fopenmp -pthread -g"
+				},
+				{
+					"fragment" : "-std=gnu++2a"
+				},
+				{
+					"fragment" : "-Winvalid-pch -x c++-header -include /home/zkprog/Programming/tinkering/worldengine/build/CMakeFiles/worldengine.dir/cmake_pch.hxx"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 3,
+					"define" : "BOOST_ALL_NO_LIB"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "WXUSINGDLL"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "_FILE_OFFSET_BITS=64"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "__WXGTK__"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 7,
+					"path" : "/home/zkprog/Programming/tinkering/worldengine/worldengine"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/zkprog/Programming/tinkering/worldengine"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/zkprog/Programming/tinkering/worldengine/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/zkprog/Programming/tinkering/worldengine/testing"
+				},
+				{
+					"backtrace" : 8,
+					"isSystem" : true,
+					"path" : "/usr/lib/wx/include/gtk2-unicode-3.0"
+				},
+				{
+					"backtrace" : 8,
+					"isSystem" : true,
+					"path" : "/usr/include/wx-3.0"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "20"
+			},
+			"precompileHeaders" : 
+			[
+				{
+					"backtrace" : 9,
+					"header" : "/home/zkprog/Programming/tinkering/worldengine/pch.h"
+				}
+			],
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-Wall -fopenmp -pthread -g"
+				},
+				{
+					"fragment" : "-std=gnu++2a"
+				},
+				{
+					"fragment" : "-Winvalid-pch -include /home/zkprog/Programming/tinkering/worldengine/build/CMakeFiles/worldengine.dir/cmake_pch.hxx"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 3,
+					"define" : "BOOST_ALL_NO_LIB"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "WXUSINGDLL"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "_FILE_OFFSET_BITS=64"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "__WXGTK__"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 7,
+					"path" : "/home/zkprog/Programming/tinkering/worldengine/worldengine"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/zkprog/Programming/tinkering/worldengine"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/zkprog/Programming/tinkering/worldengine/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/zkprog/Programming/tinkering/worldengine/testing"
+				},
+				{
+					"backtrace" : 8,
+					"isSystem" : true,
+					"path" : "/usr/lib/wx/include/gtk2-unicode-3.0"
+				},
+				{
+					"backtrace" : 8,
+					"isSystem" : true,
+					"path" : "/usr/include/wx-3.0"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "20"
+			},
+			"precompileHeaders" : 
+			[
+				{
+					"backtrace" : 9,
+					"header" : "/home/zkprog/Programming/tinkering/worldengine/pch.h"
+				}
+			],
+			"sourceIndexes" : 
+			[
+				1,
+				2,
+				3,
+				4,
+				5,
+				6
+			]
+		}
+	],
+	"id" : "worldengine::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-Wall -fopenmp -pthread -g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-rdynamic",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lSDL2",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lSDL2main",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lSDL2_image",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lSDL2_ttf",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lSDL2_net",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lsqlite3",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lgtest",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lgmock",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lGLEW",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lGL",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-pthread",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lwx_gtk2u_core-3.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lwx_baseu-3.0",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "worldengine",
+	"nameOnDisk" : "worldengine",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				7
+			]
+		},
+		{
+			"name" : "Precompile Header File",
+			"sourceIndexes" : 
+			[
+				8
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"compileGroupIndex" : 0,
+			"path" : "build/CMakeFiles/worldengine.dir/cmake_pch.hxx.cxx",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "src/contextglsdl.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "src/meshgl.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "src/objparser.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "src/settingsmixin.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "src/shader.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "main.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "pch.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"path" : "build/CMakeFiles/worldengine.dir/cmake_pch.hxx",
+			"sourceGroupIndex" : 2
+		}
+	],
+	"type" : "EXECUTABLE"
+}

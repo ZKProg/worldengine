@@ -4,14 +4,14 @@
 #include "settingsmixin.hpp"
 
 #ifdef UNIX
-    #define RUN_TESTS
+#define RUN_TESTS
 #endif
 
 #ifdef RUN_TESTS
-    #include "objparser_tests.hpp"
+#include "objparser_tests.hpp"
 #endif
 
-int main (int argc, char **argv)
+int main(int argc, char **argv)
 {
 #ifdef RUN_TESTS
   ::testing::InitGoogleTest(&argc, argv);
@@ -22,15 +22,15 @@ int main (int argc, char **argv)
   std::unique_ptr<SettingsMixin> mixin(new SettingsMixin);
 
   if (mixin->m_kV["window"]["backend"] == "sdlgl")
-    {
-      std::cout << "Rendering backend selected: SDL2/OpenGL" << std::endl;
-      ContextGLSDL context(std::move(mixin));
-      context.run();
-    }
+  {
+    std::cout << "Rendering backend selected: SDL2/OpenGL" << std::endl;
+    ContextGLSDL context(std::move(mixin));
+    context.run();
+  }
   else
-    {
-      std::cout << "No valid rendering backend selected." << std::endl;
-    }
-    
+  {
+    std::cout << "No valid rendering backend selected." << std::endl;
+  }
+
   return 0;
 }

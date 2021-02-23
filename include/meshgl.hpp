@@ -19,7 +19,7 @@ public:
 protected:
 
   GLuint m_vao, m_vbo, m_vno, m_vto, m_ebo;
-  Shader *m_shaderProgram;
+  std::unique_ptr<Shader> m_shaderProgram;
   std::unique_ptr<ObjParser> m_obj;
 
 };
