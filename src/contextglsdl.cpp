@@ -100,7 +100,7 @@ void ContextGLSDL::run(float fps)
         m_meshes.push_back(std::move(mesh));
     }
 
-    bool wireframe = false;
+    bool wireframe = true;
 
     bool isRunning = true;
     while (isRunning)
