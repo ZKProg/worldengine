@@ -1,10 +1,7 @@
 #include "pch.h"
-#include "objparser.hpp"
 
-int square(int a)
-{
-    return a * a;
-}
+#include "objparser.hpp"
+#include "mathhelpers.hpp"
 
 TEST (ObjParserTest, CoreParsing)
 {
@@ -31,3 +28,13 @@ TEST (ObjParserTest, CoreParsing)
         EXPECT_EQ(testAgainst[i], mockParser.m_faces.at(i)) << "The face index does not match the cube.obj file at index " << i;
     }
 }
+
+TEST (MathHelperTest, vectors)
+{
+  vec<2> a {2.f, 2.f};
+  vec<2> b {2.f, 5.f};
+  
+  EXPECT_EQ(14, a.dotProduct(b)) << "The dot product does not return the right value.";
+
+}
+

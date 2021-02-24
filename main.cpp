@@ -3,17 +3,19 @@
 #include "contextglsdl.hpp"
 #include "settingsmixin.hpp"
 
-#ifdef UNIX
+#ifdef __linux
 #define RUN_TESTS
 #endif
 
 #ifdef RUN_TESTS
-#include "objparser_tests.hpp"
+#include "core_tests.hpp"
 #endif
 
 int main(int argc, char **argv)
 {
+  std::cout << "Will I run the tests?!" << std::endl;
 #ifdef RUN_TESTS
+  std::cout << "YES I WILL" << std::endl;
   ::testing::InitGoogleTest(&argc, argv);
   RUN_ALL_TESTS();
 #endif

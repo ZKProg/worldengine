@@ -1,7 +1,7 @@
 #pragma once
 
 #include "pch.h"
-#include "mathhelpers.h"
+#include "mathhelpers.hpp"
 
 class ObjParser
 {

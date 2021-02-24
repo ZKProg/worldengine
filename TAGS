@@ -1,0 +1,93 @@
+
+include/contextglsdl.hpp,284
+class ContextGLSDLContextGLSDL7,84
+    SDL_Window *m_mainWindow;m_mainWindow22,343
+    SDL_GLContext m_glContext;m_glContext23,373
+    SDL_Event m_event;m_event24,404
+    std::unique_ptr<SettingsMixin> m_mixin;m_mixin25,427
+    std::vector<MeshGL> m_meshes;m_meshes26,471
+
+include/mathhelpers.hpp,205
+struct vec3vec36,82
+    vec3(float x, float y, float z)vec39,97
+    void addVec3(const vec3& v)addVec316,197
+    float m_x = 0;m_x23,308
+    float m_y = 0;m_y24,327
+    float m_z = 0;m_z25,346
+
+include/meshgl.hpp,425
+class MeshGLMeshGL7,79
+  GLuint m_vao, m_vbo, m_vno, m_vto, m_ebo;m_vao21,366
+  GLuint m_vao, m_vbo, m_vno, m_vto, m_ebo;m_vbo21,366
+  GLuint m_vao, m_vbo, m_vno, m_vto, m_ebo;m_vno21,366
+  GLuint m_vao, m_vbo, m_vno, m_vto, m_ebo;m_vto21,366
+  GLuint m_vao, m_vbo, m_vno, m_vto, m_ebo;m_ebo21,366
+  std::unique_ptr<Shader> m_shaderProgram;m_shaderProgram22,410
+  std::unique_ptr<ObjParser> m_obj;m_obj23,453
+
+include/objparser.hpp,713
+class ObjParserObjParser6,57
+  std::vector<float> m_vertices;m_vertices14,162
+  std::vector<float> m_sortedVertices;m_sortedVertices15,195
+  std::vector<float> m_textures;m_textures17,239
+  std::vector<unsigned int> m_texturesIndices;m_texturesIndices18,272
+  std::vector<float> m_sortedTextures;m_sortedTextures19,319
+  std::vector<float> m_normals;m_normals21,359
+  std::vector<unsigned int> m_normalIndices;m_normalIndices22,391
+  std::vector<float> m_sortedNormals;m_sortedNormals23,436
+  std::vector<unsigned int> m_faces;m_faces25,475
+  std::vector<unsigned int> m_sortedFaces;m_sortedFaces26,512
+  std::string m_fileName;m_fileName30,568
+  std::ifstream m_objFile;m_objFile31,594
+
+include/settingsmixin.hpp,159
+class SettingsMixinSettingsMixin5,32
+        m_kV;                               // var namem_kV17,297
+    std::string m_fileContent;m_fileContent22,367
+
+include/shader.hpp,537
+#define SHADER_HSHADER_H2,17
+class Shader {Shader12,170
+  GLint _vertex_id, _fragment_id,  _program_id;_vertex_id28,485
+  GLint _vertex_id, _fragment_id,  _program_id;_fragment_id28,485
+  GLint _vertex_id, _fragment_id,  _program_id;_program_id28,485
+  std::string _vertex_code, _fragment_code;_vertex_code29,533
+  std::string _vertex_code, _fragment_code;_fragment_code29,533
+  std::ifstream _vertex_stream, _fragment_stream;_vertex_stream30,577
+  std::ifstream _vertex_stream, _fragment_stream;_fragment_stream30,577
+
+src/contextglsdl.cpp,403
+ContextGLSDL::ContextGLSDL(std::unique_ptr<SettingsMixin> mixin) : m_mainWindow(nullptr),ContextGLSDL3,29
+ContextGLSDL::~ContextGLSDL()~ContextGLSDL17,329
+bool ContextGLSDL::initGLSDL()initGLSDL21,364
+void ContextGLSDL::paintGL()paintGL74,2008
+void ContextGLSDL::resizeGL(int w, int h)resizeGL88,2267
+void ContextGLSDL::run(float fps)run93,2342
+void ContextGLSDL::exitSDL()exitSDL140,3503
+
+src/meshgl.cpp,254
+MeshGL::MeshGL(const std::string &objFile,MeshGL3,23
+MeshGL::MeshGL(MeshGL &&mesh) : m_vao(mesh.m_vao),MeshGL16,440
+MeshGL::~MeshGL()~MeshGL28,914
+bool MeshGL::init(const std::string &objFile)init33,955
+void MeshGL::render() constrender64,1868
+
+src/objparser.cpp,151
+ObjParser::ObjParser(const std::string &objFile)ObjParser3,26
+ObjParser::~ObjParser()~ObjParser21,410
+bool ObjParser::parseFile()parseFile25,439
+
+src/settingsmixin.cpp,187
+SettingsMixin::SettingsMixin(const std::string file)SettingsMixin3,30
+SettingsMixin::~SettingsMixin()~SettingsMixin43,1141
+void SettingsMixin::displayContent()displayContent48,1179
+
+src/shader.cpp,439
+Shader::Shader(const char* vertex, const char* fragment) {Shader7,141
+Shader::Shader(const Shader &shader)Shader76,1834
+Shader::Shader(Shader&& shader) :Shader84,2020
+void Shader::operator=(const Shader &shader)operator =94,2308
+Shader::~Shader() {~Shader101,2520
+bool Shader::compileVertex() {compileVertex106,2547
+bool Shader::compileFragment() {compileFragment130,3178
+GLint Shader::getProgramID() {getProgramID154,3829
