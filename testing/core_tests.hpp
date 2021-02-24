@@ -31,10 +31,34 @@ TEST (ObjParserTest, CoreParsing)
 
 TEST (MathHelperTest, vectors)
 {
+  // Test the dot product
   vec<2> a {2.f, 2.f};
   vec<2> b {2.f, 5.f};
   
   EXPECT_EQ(14, a.dotProduct(b)) << "The dot product does not return the right value.";
 
+  // Test substraction of 2 vectors
+  vec<2> c {0.f, 0.f};
+  c = a - b;
+
+  EXPECT_EQ(0.f, c[0]) << "Vec2 substraction failed";
+  EXPECT_EQ(-3.f, c[1]) << "Vec2 substraction failed";
+
+}
+
+TEST (MathHelperTest, matrices)
+{
+  mat4 testId4 = getId4();
+
+  EXPECT_EQ(1.f, testId4[0]) << "Wrong matrix identity value at given index.";
+  EXPECT_EQ(1.f, testId4[5]) << "Wrong matrix identity value at given index.";
+  EXPECT_EQ(1.f, testId4[10]) << "Wrong matrix identity value at given index.";
+  EXPECT_EQ(1.f, testId4[15]) << "Wrong matrix identity value at given index.";
+
+  mat3 testId3 = getId3();
+
+  EXPECT_EQ(1.f, testId3[0]) << "Wrong matrix identity value at given index.";
+  EXPECT_EQ(1.f, testId3[4]) << "Wrong matrix identity value at given index.";
+  EXPECT_EQ(1.f, testId3[8]) << "Wrong matrix identity value at given index.";
 }
 
