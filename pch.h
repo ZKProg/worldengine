@@ -21,12 +21,15 @@
 #include <GL/gl.h>
 
 #ifdef __linux
-	#include <gtest/gtest.h>
-	#include <gmock/gmock.h>
+#include <gtest/gtest.h>
+#include <gmock/gmock.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
 #endif // linux
 
 #ifdef __win32
-	#include "stdafx.h"
+#include "stdafx.h"
 #endif
 
 

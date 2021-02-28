@@ -14,8 +14,11 @@ public:
   ~MeshGL();
 
   bool init(const std::string& objFile);
-  void render() const;
+  void render(const glm::mat4& VP = glm::mat4(1.f)) const;
 
+  // TODO public?
+  glm::mat4 m_model;
+  
 protected:
 
   GLuint m_vao, m_vbo, m_vno, m_vto, m_ebo;

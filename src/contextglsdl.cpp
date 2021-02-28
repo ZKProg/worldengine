@@ -12,6 +12,17 @@ ContextGLSDL::ContextGLSDL(std::unique_ptr<SettingsMixin> mixin) : m_mainWindow(
     {
         // Something went wrong
     }
+
+    // Linear algebra (camera & projection)
+    // TODO replace width and height by mixin values
+    m_perspective = glm::perspectiveFov(glm::radians(70.f), 800.f, 600.f, 0.1f, 1000.f);
+
+    m_cameraPosition = glm::vec3(1.f, 1.f, 1.f);
+    m_cameraCenter = glm::vec3(0.f, 0.f, 0.f);
+    m_cameraUp = glm::vec3(0.f, 1.f, 0.f);
+
+    m_lookAt = glm::lookAt(m_cameraPosition, m_cameraCenter, m_cameraUp);
+    m_currentVP = m_perspective * m_lookAt;
 }
 
 ContextGLSDL::~ContextGLSDL()
@@ -79,7 +90,7 @@ void ContextGLSDL::paintGL()
     // Render assets
     for (const auto &mesh : m_meshes)
     {
-        mesh.render();
+        mesh.render(m_currentVP);
     }
 
     SDL_GL_SwapWindow(m_mainWindow);

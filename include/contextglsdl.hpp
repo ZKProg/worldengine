@@ -24,4 +24,12 @@ protected:
   SDL_Event m_event;
   std::unique_ptr<SettingsMixin> m_mixin;
   std::vector<MeshGL> m_meshes;
+
+  glm::mat4 m_perspective;
+  glm::mat4 m_lookAt;
+  glm::mat4 m_currentVP;
+  
+  glm::vec3 m_cameraPosition;
+  glm::vec3 m_cameraCenter;
+  glm::vec3 m_cameraUp;
 };
