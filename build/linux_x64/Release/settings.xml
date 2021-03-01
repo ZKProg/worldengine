@@ -1,0 +1,30 @@
+<settings>
+  <window>
+    <renderer width="800" height="600">opengl</renderer>
+  </window>
+
+  <application>
+    <name>World Engine by ZKProg</name>
+  </application>
+
+  <models>
+    <model>
+      <name>gentleman.obj</name>
+      <vec3 type="model-location">0 0 0</vec3>
+      <shader type="vertex">vertex.glsl</shader>
+      <shader type="fragment">fragment.glsl</shader>
+    </model>
+  </models>
+
+
+  <cameras>
+    <camera>
+      <name>default</name>
+      <type>perspective</type>
+      <vec3 type="camera-location">1 1 1</vec3>
+      <vec3 type="center">0 0 0</vec3>
+      <vec3 type="up">0 1 0</vec3>
+    </camera>
+  </cameras>
+  
+</settings>

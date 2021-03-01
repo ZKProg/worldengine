@@ -15,10 +15,10 @@ int main(int argc, char **argv)
 {
 
 #ifdef RUN_TESTS
-  std::cout << "====================================== TESTING =============================================" << std::endl;
+  std::cout << "============= TESTING =============================================" << std::endl;
   ::testing::InitGoogleTest(&argc, argv);
   RUN_ALL_TESTS();
-  std::cout << "============================================================================================" << std::endl;
+  std::cout << "===================================================================" << std::endl;
 #endif
 
   std::cout << "World Engine 0.1 launching..." << std::endl;
