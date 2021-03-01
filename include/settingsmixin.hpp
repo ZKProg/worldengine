@@ -3,27 +3,29 @@
 #include "pch.h"
 
 #include "camera.hpp"
+#include "meshgl.hpp"
 
 class SettingsMixin
 {
 public:
 
-  SettingsMixin(const std::string file = "./settings.ini");
+  SettingsMixin(const std::string file = "./settings.xml");
+  SettingsMixin(SettingsMixin&& mixin);
   ~SettingsMixin();
 
-  void displayContent();
-
-  std::map<
-    std::string,                        // first
-    std::map<std::string, std::string>> // second
-  m_kV;                               // var name
-
-
-protected:
-
-  std::string m_fileContent;
+  void parseSettingsFile();
+  void exitCorruptFile(const char* probableReason);
   
   // Map : name => cameraInstance
   std::map<std::string, Camera> m_cameras;
-    
+  std::string m_rendererType = "opengl debug"; // sdlgl, wxgl, qtgl, sdlvulkan
+  std::string m_applicationName;
+  std::string m_file;x
+  std::vector<MeshGL> m_meshesGL;
+
+  float m_width, m_height;
+  
+protected:
+
+  
 };

@@ -4,7 +4,7 @@
 #include "settingsmixin.hpp"
 
 #ifdef __linux
-#define RUN_TESTS
+//#define RUN_TESTS
 #endif
 
 #ifdef RUN_TESTS
@@ -24,7 +24,9 @@ int main(int argc, char **argv)
   std::cout << "World Engine 0.1 launching..." << std::endl;
   std::unique_ptr<SettingsMixin> mixin(new SettingsMixin);
 
-  if (mixin->m_kV["window"]["backend"] == "sdlgl")
+  std::cout << "Width: " << mixin->m_width << std::endl;
+
+  if (mixin->m_rendererType == "sdlgl")
   {
     std::cout << "Rendering backend selected: SDL2/OpenGL" << std::endl;
     ContextGLSDL context(std::move(mixin));

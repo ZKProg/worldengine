@@ -159,6 +159,7 @@ if (UNIX)
         gmock
         GLEW
         GL
+	tinyxml2
         ${wxWidgets_LIBRARIES}
     )
 endif()

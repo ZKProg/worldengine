@@ -1,6 +1,6 @@
 <settings>
   <window>
-    <renderer width="800" height="600">opengl</renderer>
+    <renderer width="800" height="600">sdlgl</renderer>
   </window>
 
   <application>
